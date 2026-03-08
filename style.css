@@ -349,6 +349,30 @@ h6 {
     will-change: transform;
 }
 
+/* Disable heavy animations on touch/mobile devices to prevent lag */
+@media (hover: none),
+(max-width: 768px) {
+    .ninja-image {
+        animation: none;
+        will-change: auto;
+        transition: none;
+        filter: brightness(0.95);
+    }
+
+    .ninja-image-wrapper {
+        will-change: auto;
+        transition: opacity 0.5s ease, transform 0.8s ease;
+        perspective: none;
+        transform-style: flat;
+    }
+
+    .ninja-image-wrapper.rolling-active {
+        animation: none;
+        opacity: 1;
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
 @keyframes ninjaFloat {
 
     0%,
@@ -645,6 +669,35 @@ h6 {
 
     .skills-grid-new {
         grid-template-columns: repeat(2, 1fr);
+        gap: 2rem 1.5rem;
+        width: 100%;
+    }
+
+    /* Ensure all skill items are visible on mobile */
+    .skill-item {
+        gap: 1rem;
+    }
+
+    .skill-diamond {
+        width: 70px;
+        height: 70px;
+    }
+
+    .skill-name {
+        font-size: 0.85rem;
+    }
+
+    /* Simplify skill animations on mobile */
+    .slide-left.animate-on-scroll,
+    .slide-right.animate-on-scroll {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    .slide-left.animate-on-scroll.visible,
+    .slide-right.animate-on-scroll.visible {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 

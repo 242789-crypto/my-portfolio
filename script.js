@@ -360,6 +360,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (aboutSection && ninjaWrapper && ninjaImg) {
         aboutSection.addEventListener('mousemove', (e) => {
+            // Disable parallax on touch/mobile devices to prevent lag
+            if (window.innerWidth <= 768 || window.matchMedia('(hover: none)').matches) return;
+
             const rect = aboutSection.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
