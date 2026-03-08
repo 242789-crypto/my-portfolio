@@ -349,27 +349,12 @@ h6 {
     will-change: transform;
 }
 
-/* Disable heavy animations on touch/mobile devices to prevent lag */
+/* On touch/mobile: only disable 3D perspective used by JS parallax, all CSS animations remain */
 @media (hover: none),
 (max-width: 768px) {
-    .ninja-image {
-        animation: none;
-        will-change: auto;
-        transition: none;
-        filter: brightness(0.95);
-    }
-
     .ninja-image-wrapper {
-        will-change: auto;
-        transition: opacity 0.5s ease, transform 0.8s ease;
         perspective: none;
         transform-style: flat;
-    }
-
-    .ninja-image-wrapper.rolling-active {
-        animation: none;
-        opacity: 1;
-        transform: translateX(0) rotate(0deg);
     }
 }
 
