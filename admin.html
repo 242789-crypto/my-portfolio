@@ -304,6 +304,7 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
+            // Updated for Netlify Functions
             const res = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -320,6 +321,7 @@
         }
 
         async function initDashboard() {
+            // Updated for Netlify Functions
             const res = await fetch('/api/content');
             portfolioData = await res.json();
             populateForm();
@@ -406,6 +408,7 @@
             portfolioData.contact.phone = document.getElementById('data-contact-phone').value;
             portfolioData.contact.email = document.getElementById('data-contact-email').value;
 
+            // Updated for Netlify Functions
             const res = await fetch('/api/content', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

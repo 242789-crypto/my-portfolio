@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
+            // Updated for Netlify Functions / Redirects
             const response = await fetch('/api/content');
             if (!response.ok) throw new Error('Failed to fetch content');
             const data = await response.json();
