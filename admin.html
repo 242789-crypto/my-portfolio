@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --card-bg: #111111;
+            --accent: #ffc107;
+            --text: #ffffff;
+            --text-dim: #9ca3af;
+            --border: rgba(255, 193, 7, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            text-align: left;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .nav-btn.active,
+        .nav-btn:hover {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--accent);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 3rem;
+            overflow-y: auto;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .save-btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Editor Cards */
+        .editor-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .editor-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 193, 7, 0.1);
+        }
+
+        /* login Overlay */
+        #login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .login-card {
+            width: 400px;
+            padding: 3rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .login-card h2 {
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Toast */
+        #toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #22c55e;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            transform: translateY(100px);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="login-overlay">
+        <div class="login-card">
+            <h2>Admin Login</h2>
+            <div class="form-group">
+                <input type="text" id="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password">
+            </div>
+            <button class="save-btn" style="width: 100%" onclick="login()">Enter Dashboard</button>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="logo">PORTFOLIO <span style="color: #fff">CMS</span></div>
+        <button class="nav-btn active" onclick="showSection('hero-section')">Hero & About</button>
+        <button class="nav-btn" onclick="showSection('skills-section')">Skills</button>
+        <button class="nav-btn" onclick="showSection('portfolio-section')">Portfolio</button>
+        <button class="nav-btn" onclick="showSection('testimonials-section')">Testimonials</button>
+        <button class="nav-btn" onclick="showSection('contact-section')">Contact</button>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard-header">
+            <h1 id="section-title">Hero & About Management</h1>
+            <button class="save-btn" onclick="saveData()">Save All Changes</button>
+        </div>
+
+        <div id="hero-section" class="editor-section active">
+            <div class="card">
+                <h3>Hero Content</h3>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="data-hero-name">
+                </div>
+                <div class="form-group">
+                    <label>Professional Title</label>
+                    <input type="text" id="data-hero-title">
+                </div>
+                <div class="form-group">
+                    <label>Introduction</label>
+                    <textarea id="data-hero-desc" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="card">
+                <h3>About Details</h3>
+                <div class="form-group">
+                    <label>Main Statement</label>
+                    <input type="text" id="data-about-statement">
+                </div>
+                <div id="about-details-list"></div>
+            </div>
+        </div>
+
+        <div id="skills-section" class="editor-section">
+            <div class="card">
+                <h3>Technical Skills</h3>
+                <div id="skills-list"></div>
+                <button class="nav-btn" onclick="addItem('skills')">+ Add Skill</button>
+            </div>
+        </div>
+
+        <div id="portfolio-section" class="editor-section">
+            <div class="card">
+                <h3>My Projects</h3>
+                <div id="portfolio-list"></div>
+                <button class="nav-btn" onclick="addItem('portfolio')">+ Add Project</button>
+            </div>
+        </div>
+
+        <div id="testimonials-section" class="editor-section">
+            <div class="card">
+                <h3>Client Reviews</h3>
+                <div id="testimonials-list"></div>
+                <button class="nav-btn" onclick="addItem('testimonials')">+ Add Review</button>
+            </div>
+        </div>
+
+        <div id="contact-section" class="editor-section">
+            <div class="card">
+                <h3>Contact Info</h3>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="data-contact-location">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" id="data-contact-phone">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" id="data-contact-email">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast">Saved Successfully!</div>
+
+    <script>
+        let portfolioData = {};
+
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                document.getElementById('login-overlay').style.display = 'none';
+                initDashboard();
+            } else {
+                alert(data.message);
+            }
+        }
+
+        async function initDashboard() {
+            const res = await fetch('/api/content');
+            portfolioData = await res.json();
+            populateForm();
+        }
+
+        function populateForm() {
+            // Hero
+            document.getElementById('data-hero-name').value = portfolioData.hero.name;
+            document.getElementById('data-hero-title').value = portfolioData.hero.title;
+            document.getElementById('data-hero-desc').value = portfolioData.hero.description;
+
+            // About
+            document.getElementById('data-about-statement').value = portfolioData.about.statement;
+            const aboutList = document.getElementById('about-details-list');
+            aboutList.innerHTML = portfolioData.about.details.map((d, i) => `
+                <div class="card" style="margin-top: 1rem">
+                    <input type="text" value="${d.icon}" onchange="updateItem('about.details', ${i}, 'icon', this.value)" style="width: 50px; margin-right: 10px">
+                    <input type="text" value="${d.label}" onchange="updateItem('about.details', ${i}, 'label', this.value)" style="width: 200px; margin-right: 10px">
+                    <textarea onchange="updateItem('about.details', ${i}, 'content', this.value)">${d.content}</textarea>
+                </div>
+            `).join('');
+
+            // Skills
+            renderList('skills', 'skills-list');
+            renderList('portfolio', 'portfolio-list');
+            renderList('testimonials', 'testimonials-list');
+
+            // Contact
+            document.getElementById('data-contact-location').value = portfolioData.contact.location;
+            document.getElementById('data-contact-phone').value = portfolioData.contact.phone;
+            document.getElementById('data-contact-email').value = portfolioData.contact.email;
+        }
+
+        function renderList(key, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = portfolioData[key].map((item, i) => `
+                <div class="card" style="position: relative">
+                    <button onclick="deleteItem('${key}', ${i})" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #ef4444; cursor: pointer">Remove</button>
+                    ${Object.keys(item).map(prop => `
+                        <div class="form-group">
+                            <label>${prop}</label>
+                            <input type="text" value="${item[prop]}" onchange="updateItem('${key}', ${i}, '${prop}', this.value)">
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+        }
+
+        function updateItem(path, index, prop, value) {
+            const parts = path.split('.');
+            let target = portfolioData;
+            parts.forEach(p => target = target[p]);
+            target[index][prop] = value;
+        }
+
+        function deleteItem(key, index) {
+            portfolioData[key].splice(index, 1);
+            populateForm();
+        }
+
+        function addItem(key) {
+            const newItem = key === 'skills' ? { name: "New Skill", icon: "code" } :
+                key === 'portfolio' ? { title: "New Project", type: "Web App", image: "", client: "", duration: "", tech: "", link: "#" } :
+                    { quote: "Amazing work!", name: "Client Name", role: "CEO", avatar: "" };
+            portfolioData[key].push(newItem);
+            populateForm();
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.editor-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+            document.getElementById('section-title').textContent = event.target.textContent + " Management";
+        }
+
+        async function saveData() {
+            // Update simple fields
+            portfolioData.hero.name = document.getElementById('data-hero-name').value;
+            portfolioData.hero.title = document.getElementById('data-hero-title').value;
+            portfolioData.hero.description = document.getElementById('data-hero-desc').value;
+            portfolioData.about.statement = document.getElementById('data-about-statement').value;
+            portfolioData.contact.location = document.getElementById('data-contact-location').value;
+            portfolioData.contact.phone = document.getElementById('data-contact-phone').value;
+            portfolioData.contact.email = document.getElementById('data-contact-email').value;
+
+            const res = await fetch('/api/content', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(portfolioData)
+            });
+
+            if (res.ok) {
+                const toast = document.getElementById('toast');
+                toast.style.transform = 'translateY(0)';
+                setTimeout(() => toast.style.transform = 'translateY(100px)', 3000);
+            }
+        }
+    </script>
+</body>
+
+</html>

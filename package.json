@@ -1,0 +1,15 @@
+{
+    "name": "portfolio-cms",
+    "version": "1.0.0",
+    "description": "Dynamic CMS for Portfolio",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "node --watch server.js"
+    },
+    "dependencies": {
+        "body-parser": "^1.20.4",
+        "cors": "^2.8.6",
+        "express": "^4.22.1"
+    }
+}

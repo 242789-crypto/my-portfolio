@@ -1,0 +1,194 @@
+{
+  "hero": {
+    "name": "Waleed Abdullah",
+    "title": "Blazor App Developer & WordPress Expert",
+    "description": "I build modern, user‑friendly web apps and websites that help businesses grow."
+  },
+  "about": {
+    "title": "About Me",
+    "statement": "Turning complex problems into elegant digital solutions.",
+    "details": [
+      {
+        "icon": "🚀",
+        "label": "Professional Experience",
+        "content": "Over 5 years of experience in the tech industry, leading MERN stack projects and crafting bespoke WordPress solutions."
+      },
+      {
+        "icon": "🎓",
+        "label": "Education & Qualifications",
+        "content": "BS in Computer Science (BSCS) with a solid foundation in data structures. Certified WordPress expert and coding bootcamp graduate."
+      },
+      {
+        "icon": "🎯",
+        "label": "Career Goals",
+        "content": "Passionate about building highly scalable, user-centric web applications and contributing to innovative global tech projects."
+      }
+    ]
+  },
+  "skills": [
+    {
+      "name": "WordPress",
+      "icon": "wordpress"
+    },
+    {
+      "name": "Elementor",
+      "icon": "layout"
+    },
+    {
+      "name": "JavaScript",
+      "icon": "code"
+    },
+    {
+      "name": "React",
+      "icon": "atom"
+    },
+    {
+      "name": "Node.js",
+      "icon": "server"
+    },
+    {
+      "name": "MongoDB",
+      "icon": "database"
+    },
+    {
+      "name": "Blazor App",
+      "icon": "box"
+    },
+    {
+      "name": "GitHub",
+      "icon": "github"
+    }
+  ],
+  "resume": [
+    {
+      "type": "experience",
+      "title": "Senior Web Developer",
+      "date": "2023 - Present",
+      "company": "Tech Agency",
+      "description": "Leading the development of scalable MERN stack web applications. Overseeing successful deployments and collaborating with cross-functional teams."
+    },
+    {
+      "type": "education",
+      "title": "BS Computer Science",
+      "date": "2018 - 2022",
+      "company": "[University Name]",
+      "description": "Completed coursework in software engineering, data structures, and web technologies. Graduated with honors and led the university coding club."
+    },
+    {
+      "type": "experience",
+      "title": "WordPress Expert",
+      "date": "2021 - 2023",
+      "company": "Freelance",
+      "description": "Designed and developed custom WordPress themes and plugins. Delivered tailored e-commerce solutions and corporate websites to diverse clients."
+    },
+    {
+      "type": "education",
+      "title": "Full-Stack Bootcamp",
+      "date": "2020",
+      "company": "Tech Institute",
+      "description": "Intensive 6-month bootcamp focusing on modern web development practices including React, Node.js, and MongoDB."
+    }
+  ],
+  "stats": [
+    {
+      "number": "5+",
+      "label": "Years of Experience"
+    },
+    {
+      "number": "40+",
+      "label": "Happy Customers"
+    },
+    {
+      "number": "50+",
+      "label": "Completed Projects"
+    },
+    {
+      "number": "10+",
+      "label": "Frameworks Learned"
+    }
+  ],
+  "portfolio": [
+    {
+      "title": "E-Commerce Platform",
+      "type": "Web Application",
+      "image": "assets/project_ecommerce.png",
+      "client": "Tech Agency",
+      "duration": "3 Months",
+      "tech": "MERN, Redux",
+      "link": "#"
+    },
+    {
+      "title": "Corporate Website",
+      "type": "WordPress Theme",
+      "image": "assets/project_corporate.png",
+      "client": "Business Solutions",
+      "duration": "1 Month",
+      "tech": "WordPress, Elementor",
+      "link": "#"
+    },
+    {
+      "title": "Real Estate Portal",
+      "type": "Web Application",
+      "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000&auto=format&fit=crop",
+      "client": "Estate Group",
+      "duration": "4 Months",
+      "tech": "Node.js, React, MongoDB",
+      "link": "#"
+    },
+    {
+      "title": "Premium SaaS Dashboard",
+      "type": "Software as a Service",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+      "client": "Cloud Platforms",
+      "duration": "5 Months",
+      "tech": "Next.js, TypeScript, Tailwind",
+      "link": "#"
+    },
+    {
+      "title": "Blogging Platform",
+      "type": "Full-Stack Site",
+      "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1000&auto=format&fit=crop",
+      "client": "Content Creators",
+      "duration": "2 Months",
+      "tech": "Blazor, SQL Server",
+      "link": "#"
+    },
+    {
+      "title": "Creative Portfolio App",
+      "type": "Interactive Web App",
+      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop",
+      "client": "Designers Collective",
+      "duration": "2 Months",
+      "tech": "React, Three.js, GSAP",
+      "link": "#"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Waleed delivered an exceptional website that perfectly matches our brand. His attention to detail and ability to execute complex MERN stack features is outstanding.",
+      "name": "Sarah Jenkins",
+      "role": "CEO, TechNova",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
+    },
+    {
+      "quote": "Working with Waleed was a seamless experience. He completely revamped our WordPress site to be faster, more secure, and beautifully responsive.",
+      "name": "Michael Lee",
+      "role": "Founder, Creative Studios",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
+    }
+  ],
+  "contact": {
+    "location": "Rawalpindi Pakistan",
+    "phone": "0314 9763195",
+    "email": "waleed03149763195@gmail.com",
+    "social": {
+      "github": "https://github.com/242789-crypto",
+      "linkedin": "https://www.linkedin.com/in/waleed-abdullah-8baa5a36a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      "facebook": "https://www.facebook.com/share/16dq4H9BuP/",
+      "instagram": "https://instagram.com/waleed_abdullah86"
+    }
+  },
+  "footer": {
+    "text": "© 2026 Waleed Abdullah – Developed by Waleed Abdullah"
+  }
+}
