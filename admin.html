@@ -229,19 +229,22 @@
             .sidebar {
                 position: fixed;
                 top: 0;
-                left: -280px;
+                left: 0;
+                width: 250px;
                 height: 100vh;
                 z-index: 1000;
-                transition: left 0.3s ease;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
                 box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+                padding: 1.5rem;
             }
 
             .sidebar.show {
-                left: 0;
+                transform: translateX(0);
             }
 
             .sidebar .logo {
-                margin-top: 1rem;
+                margin-top: 0.5rem;
             }
 
             /* Overlay for when sidebar is open */
